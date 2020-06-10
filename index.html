@@ -4,18 +4,62 @@
   <meta charset="UTF-8">
   <title>Game of Life - Money Maker Game</title>
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css'>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
 <link rel="stylesheet" href="./styles.css">
-
+<!-- Odometr includes -->
+<link rel="stylesheet" href="http://github.hubspot.com/odometer/themes/odometer-theme-minimal.css" />
+<script src="http://github.hubspot.com/odometer/odometer.js"></script>
 </head>
 <body>
 
-  Money: $<span id="money_output"></span> <br/>
-Investment: <span id="invest_output"></span><br/>
+  <section class="section">
+    <div class="container is-center">
+      <h1 class="title">
+        Game of Life - Money Maker Game
+      </h1>
+      <p class="subtitle">
+        Goal is to be <strong>rich</strong>!
+      </p>
+    </div>
+  </section>
 
-<button id="makeMoney" onclick="make()">Make Money</button><br/>
-<button id="buyInvestment" onclick="buy()">Buy Investment (costs $5)</button>
+<section class="section">
+<div class="container">
+  <div class="box">
+  Money: $<span class="odometer" id="money_output"></span> <br/>
+  Stocks: <span class="odometer" id="stocks_output"></span><br/>
+  Bonds: <span class="odometer" id="bonds_output"></span><br/>
+  Property: <span class="odometer" id="property_output"></span><br/>
+</div>
+</div>
+</section>
 
-<!--pre class="battery-log"></pre-->
+<section class="section">
+<div class="container">
+<button id="makeMoney" class="button is-link" onclick="make()">Make Money</button><br/>
+<button id="buyStocks" class="button is-warning" onclick="buyStocks()">Buy Stock Investments (costs $5)</button><br/>
+<progress class="progress is-primary" id="bondsProgress" value="0" max="100"></progress>
+<button id="buyBonds" class="button is-primary" style="display: none;" onclick="buyBonds()">Buy Bond Investments (costs $100 & 5 stocks)</button><br />
+<progress class="progress is-success" id="propertyProgress" value="0" max="100"></progress>
+<button id="buyProperty" class="button is-success" style="display: none;" onclick="buyPropperty()">Buy Property Investments (costs $1000 & 200 stocks & 50 bonds)</button>
+</div>
+
+
+
+</section>
+
+<div class="notification is-primary" id="bondsNotification" style="display: none;">
+  <button class="delete" id="bondsNotificationDel"></button>
+  You have leveled up! Now you can buy Bonds too.
+</div>
+
+<div class="notification is-success" id="propertyNotification" style="display: none;">
+  <button class="delete" id="propertyNotificationDel"></button>
+  You have reached max level! Now you can buy properties.
+</div>
+
+
+
 
 <script  src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js"></script>
   <script  src="./script.js"></script>

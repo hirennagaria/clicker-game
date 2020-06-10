@@ -2,11 +2,9 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: arial, sans-serif;
-  font-size: 20px;
-  margin: 0;
-  padding: 20px;
+.notification {
+  position: absolute;
+  z-index: 1;
 }
 
 .container {
