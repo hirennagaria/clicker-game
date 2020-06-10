@@ -2,6 +2,7 @@ let money = 0;
 let stocks = 0;
 let bonds = 0;
 let property = 0;
+let mansion = 0;
 
 function make() {
   money++;
@@ -35,6 +36,17 @@ function buyPropperty() {
   }
 }
 
+function buyMansion() {
+  if (money >= 100000 && stocks >= 4000 && bonds >= 1000 && property >= 30) {
+    money -= 100000;
+    stocks -= 4000;
+    bonds -= 1000;
+    property -= 30;
+    mansion++;
+    renderMansion();
+  }
+}
+
 
 function renderMoney() {
   money_output.innerHTML = money;
@@ -56,6 +68,10 @@ function renderProperty() {
   property_output.innerHTML = property;
 }
 
+function renderMansion() {
+  //money_output.innerHTML = money;
+  property_output.innerHTML = mansion;
+}
 
 
 function update() {
@@ -67,6 +83,9 @@ function update() {
   }
   if(property) {
     money += property * 20;
+  }
+  if(mansion) {
+    money += mansion * 500
   }
 }
 
@@ -80,7 +99,7 @@ function checkNotifications() {
   if (money >= 100 && stocks >= 5 && isHidden("buyBonds")) {
     document.getElementById("buyBonds").style.display = 'block';
     document.getElementById("bondsProgress").style.display = 'none';
-    document.getElementById("propertyProgress").style.display = 'block';
+    //document.getElementById("propertyProgress").style.display = 'block';
     document.getElementById("bondsNotification").style.display = 'block';
   }
 
@@ -88,6 +107,11 @@ function checkNotifications() {
     document.getElementById("buyProperty").style.display = 'block';
     document.getElementById("propertyProgress").style.display = 'none';
     document.getElementById("propertyNotification").style.display = 'block';
+  }
+  if (money >= 100000 && stocks >= 4000 && bonds >= 1000 && property >= 30 && isHidden("buyMansion")) {
+    document.getElementById("buyMansion").style.display = 'block';
+    document.getElementById("mansionProgress").style.display = 'none';
+    document.getElementById("mansionNotification").style.display = 'block';
   }
 }
 
@@ -115,6 +139,22 @@ function renderProgress() {
    progressValue = moneyValue + stockValue + bondValue;
     propertyProgress.value = progressValue;
   }
+  if(!isHidden('mansionProgress')) {
+    let progressValue = 0;
+    let moneyValue = money/4000;
+    moneyValue = (moneyValue>25) ? 25 : moneyValue;
+
+   let stockValue = stocks / 160;
+   stockValue = (stockValue>25) ? 25 : stockValue;
+
+   let bondValue = bonds / 40;
+   bondValue = (bondValue>25) ? 25 : bondValue;
+
+   let propertyValue = bonds / 1.2;
+   propertyValue = (propertyValue>25) ? 25 : propertyValue;
+   progressValue = moneyValue + stockValue + bondValue + propertyValue;
+    mansionProgress.value = progressValue;
+  }
 }
 
 // loop
@@ -124,6 +164,7 @@ setInterval(() => {
   renderStocks();
   renderBonds();
   renderProperty();
+  renderMansion();
   checkNotifications();
   renderProgress();
 }, 500) // 500ms = twice a second

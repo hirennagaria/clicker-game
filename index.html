@@ -30,6 +30,7 @@
   Stocks: <span class="odometer" id="stocks_output"></span><br/>
   Bonds: <span class="odometer" id="bonds_output"></span><br/>
   Property: <span class="odometer" id="property_output"></span><br/>
+  Mansion: <span class="odometer" id="mansion_output"></span><br/>
 </div>
 </div>
 </section>
@@ -41,7 +42,9 @@
 <progress class="progress is-primary" id="bondsProgress" value="0" max="100"></progress>
 <button id="buyBonds" class="button is-primary" style="display: none;" onclick="buyBonds()">Buy Bond Investments (costs $100 & 5 stocks)</button><br />
 <progress class="progress is-success" id="propertyProgress" value="0" max="100"></progress>
-<button id="buyProperty" class="button is-success" style="display: none;" onclick="buyPropperty()">Buy Property Investments (costs $1000 & 200 stocks & 50 bonds)</button>
+<button id="buyProperty" class="button is-success" style="display: none;" onclick="buyPropperty()">Buy Property Investments (costs $1000 & 200 stocks & 50 bonds)</button><br />
+<progress class="progress is-danger" id="mansionProgress" value="0" max="100"></progress>
+<button id="buyMansion" class="button is-danger" style="display: none;" onclick="buyMansion()">Buy Mansion (costs $100000 & 4000 stocks & 1000 bonds & 30 properties)</button><br />
 </div>
 
 
@@ -55,6 +58,11 @@
 
 <div class="notification is-success" id="propertyNotification" style="display: none;">
   <button class="delete" id="propertyNotificationDel"></button>
+  You have leveled up! Now you can buy properties.
+</div>
+
+<div class="notification is-danger" id="mansionNotification" style="display: none;">
+  <button class="delete" id="mansionNotificationDel"></button>
   You have reached max level! Now you can buy properties.
 </div>
 
